@@ -1,3 +1,5 @@
+/// <reference path="declaration.d.ts" />
+
 import 'reflect-metadata';
 
 (Reflect as any).CodeAlter = {};
