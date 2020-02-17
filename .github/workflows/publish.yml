@@ -30,6 +30,10 @@ jobs:
         with:
           node-version: '12.x'
           registry-url: https://registry.npmjs.org/
+      - name: Build package
+        run: |
+          npm install
+          npm run build
       - name: Publish package
         run: |
           npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
