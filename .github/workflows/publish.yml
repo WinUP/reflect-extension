@@ -1,10 +1,10 @@
-name: Test code
+name: Publish package
 
 on:
   push:
     branches:
       - master
-    tags-ignore:
+    tags:
       - '*.*.*'
 
 jobs:
@@ -22,3 +22,16 @@ jobs:
           npm run build
       - name: Run unit tests
         run: npm test
+  publish:
+    needs: test
+    runs-on: ubuntu-latesy
+    steps:
+      - uses: actions/checkout@v2
+      - name: Prepare environment
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Publish package
+        run: npm publish
+    env:
+      NODE_AUTH_TOKEN: ${{secrets.npm_token}}
