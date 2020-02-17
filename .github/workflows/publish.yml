@@ -2,8 +2,6 @@ name: Publish package
 
 on:
   push:
-    branches:
-      - master
     tags:
       - '*.*.*'
 
@@ -23,7 +21,7 @@ jobs:
       - name: Run unit tests
         run: npm test
   publish:
-    needs: test
+    needs: build
     runs-on: ubuntu-latesy
     steps:
       - uses: actions/checkout@v2
