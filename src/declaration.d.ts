@@ -200,7 +200,7 @@ declare namespace Reflect {
          * @param injectArgIndex Parameter index that source method's return data should be injected to in destination method
          * @param injectMethodIndex Parameter index that source method itself should be injected to in destination method
          */
-        function appendMethod(from: { [key: string]: any }, to: { [key: string]: any }, fromName: string, toName?: string,
+        function appendMethod(from: Object, to: Object, fromName: string, toName?: string,
             injectArgIndex?: number, injectMethodIndex?: number): void;
     }
 }

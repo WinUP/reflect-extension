@@ -5,21 +5,21 @@
         });
     };
 
-    Reflect.CodeAlter.appendMethod = function (from: { [key: string]: any }, to: { [key: string]: any }, fromName: string, toName?: string,
+    Reflect.CodeAlter.appendMethod = function (from: Object, to: Object, fromName: string, toName?: string,
         injectArgIndex?: number, injectMethodIndex?: number): void {
         const destinationName = toName ?? fromName;
-        const originalMethod = to[destinationName] || function () { };
-        const extendedMethod = from[fromName] || function () { };
+        const originalMethod = (to as any)[destinationName] || function () { };
+        const extendedMethod = (from as any)[fromName] || function () { };
         if (injectArgIndex != null && injectMethodIndex != null && injectArgIndex === injectMethodIndex) {
             throw new SyntaxError('Unable to extend method: inject argument index must not same as inject method index');
         }
         if (injectArgIndex != null || injectMethodIndex != null) {
-            to[destinationName] = function () {
+            (to as any)[destinationName] = function () {
                 const result = Reflect.apply(originalMethod, this, arguments);
                 return Reflect.apply(extendedMethod, this, createArguments(arguments, originalMethod, result, injectArgIndex, injectMethodIndex));
             };
         } else {
-            to[destinationName] = function () {
+            (to as any)[destinationName] = function () {
                 Reflect.apply(originalMethod, this, arguments);
                 return Reflect.apply(extendedMethod, this, arguments);
             };
