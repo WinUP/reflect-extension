@@ -1,13 +1,14 @@
 {
   "name": "reflect-extension",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Extension methods for reflect namespace",
-  "main": "dist/index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "types": "src/declaration.d.ts",
   "private": false,
   "scripts": {
     "test": "jasmine-ts --config=jasmine.json",
-    "build": "tsc"
+    "build": "sh ./scripts/build.sh"
   },
   "license": "MIT",
   "repository": {
