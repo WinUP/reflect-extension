@@ -4,6 +4,10 @@ Additional methods based on reflect-metadata for runtime reflection and object o
 
 This package includes import for `reflect-metadata`.
 
+```
+npm i reflect-extension
+```
+
 ## CodeAlter
 
 Attach another method's logic after one method finished.
